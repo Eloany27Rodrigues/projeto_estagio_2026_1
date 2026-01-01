@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel de Mensagens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-indigo-600 p-4 text-white shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">Painel Administrativo</h1>
+            <div class="flex items-center gap-4">
+                <span>Bem-vindo, <strong>{{ user.username }}</strong></span>
+                <a href="{% url 'logout' %}" class="bg-indigo-800 px-3 py-1 rounded hover:bg-red-500 transition">Sair</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto py-10 px-4">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">Mensagens Recebidas</h2>
+        
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+            <table class="min-w-full leading-normal">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <th class="py-3 px-6 text-left">Data</th>
+                        <th class="py-3 px-6 text-left">Nome</th>
+                        <th class="py-3 px-6 text-left">E-mail</th>
+                        <th class="py-3 px-6 text-left">Mensagem</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm">
+                    {% for item in mensagens %}
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6 text-left">{{ item.data_envio|date:"d/m/Y H:i" }}</td>
+                        <td class="py-3 px-6 text-left font-bold">{{ item.nome }}</td>
+                        <td class="py-3 px-6 text-left">{{ item.email }}</td>
+                        <td class="py-3 px-6 text-left">{{ item.mensagem }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="py-10 text-center text-gray-500">Nenhuma mensagem recebida ainda.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="mt-6 text-center">
+            <a href="{% url 'landpage' %}" class="text-indigo-600 hover:underline">← Voltar para a Landpage</a>
+        </div>
+    </div>
+</body>
+</html>
