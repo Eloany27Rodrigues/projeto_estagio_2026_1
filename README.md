@@ -157,13 +157,3 @@ teste_mupi/
 - ✅ Autenticação via sistema do Django
 
 ---
-
-## 📄 Licença
-
-Este projeto é de uso livre para fins educacionais.
-
----
-
-## 👨‍💻 Autor
-
-Desenvolvido como projeto de teste MUPI.
